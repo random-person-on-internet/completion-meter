@@ -25,11 +25,13 @@ You can find the generated collector curve graphs inside:
 
 | File/Folder | Purpose |
 |-------------|---------|
-| `\spacy\script.py` | Helps us separate noun_phrases from data and add it to `/extracted_data.json`|
+| `\spacy\script.py` | Helps us separate noun_phrases from data and add it to `\extracted_data.json`|
 | `\extracted_data_cleaned.json` | Main input file with cleaned extracted `entities` and `noun_phrases` per speech |
 | `\curve\graphs_collector_style\` | Auto-generated graphs showing collector curves for each speech |
-| `\curve\curve_analysis.ipynb` | Python scripts to generate collector graphs |
+| `\curve\curve_analysis.ipynb` | Script to generate collector graphs |
 | `\data` | Data collected for further steps |
+| `\chunked_data` | Chunked data for generating vector embeddings |
+| `\clustering\generate_chunk.ipynb` | Script to generate chunks from text files in `\data` and save json files in `\chunked_data` |
 
 
 ---
