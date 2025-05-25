@@ -9,14 +9,14 @@ This project explores how we can **track the "completion" of a conversation or s
 - Collect 25 speeches and 25 conversations
 - **Extracted entities and noun phrases** from sample speeches
 - **Generated collector curves** that track how many *new* concepts appear over time
-- These curves help us **visualize novelty vs repetition** in a speech
-- The first dataset mostly had **planned speeches**, so the curves appear mostly linear which indicates less repetition
+- Chunked each speech into small segments
+- Generated **vector embeddings** for each chunk using sentence-transformers
+- Clustered similar chunks using unsupervised learning (KMeans)
+- Added a synthetic **progress** label to each chunk to show "how far" into speech it is
+- Trained a **Random Forest Regressor** to predict **progress** from embeddings (supervised learning)
 
-You can find the generated collector curve graphs inside:
 ```
-
-📁 `/curve/curve_analysis.ipynb`
-
+NOTE: This baseline model is just a starting point, accuracy is limited due to repetitive/generic data but the main goal was to prepare pipeline which is complete and modular - easy to re-run with better speech datasets
 ```
 
 ---
@@ -25,20 +25,20 @@ You can find the generated collector curve graphs inside:
 
 | File/Folder | Purpose |
 |-------------|---------|
-| `/spacy/script.py` | Helps us separate noun_phrases from data and add it to `/extracted_data.json`|
-| `/extracted_data_cleaned.json` | Main input file with cleaned extracted `entities` and `noun_phrases` per speech |
-| `/curve/graphs_collector_style` | Auto-generated graphs showing collector curves for each speech |
+| `/data` | Data in `.txt` format |
+| `/spacy/script.py` | Script to separate noun_phrases from `/data` and add it to `/extracted_data.json`|
+| `/extracted_data_cleaned.json` | Cleaned file of extracted `entities` and `noun_phrases` per speech |
 | `/curve/curve_analysis.ipynb` | Script to generate collector graphs |
-| `/data` | Data collected for further steps |
-| `/chunked_data` | Chunked data for generating vector embeddings |
-| `/clustering/generate_chunk.ipynb` | Script to generate chunks from text files in `/data` and save json files in `/chunked_data` |
-| `/clustering/embed_chunks.ipynb` | Script to embed chunks from `/chunked_data` and save it to `/clustering/chunk_embeddings.json`|
-| `/clustering/chunk_embeddings.json` | Chunk embeddings for clustering |
-| `/clustering/cluster_chunks.ipynb` | Generate clusters for `/clustering/chunk_embeddings.json` and save them to `/clustering/chunk_clusters.json`|
-| `/clustering/chunk_clusters.json` | Clusters generated from embeddings for training model |
-| `/clustering/add_progress_labels.ipynb` | Script to add "progress" to clusters taken from `/clustering/chunk_clusters.json` and saves it to `/clustering/chunk_clusters_labeled.json` |
-| `/clustering/chunk_clusters_labeled.json` | Clusters with progress property added, ready to be used for unsupervised learning |
-| `/clustering/train_regressor.ipynb` | Script to train regressor model for SUPERVISED learning |
+| `/curve/graphs_collector_style` | Collector curve graphs for each speech |
+| `/clustering/generate_chunk.ipynb` | Script to chunk `/data` files and store in `/chunked_data` |
+| `/chunked_data` | Speech chunks stored as JSON after splitting to generate vector embeddings |
+| `/clustering/embed_chunks.ipynb` | Script to embed `/chunked_data` using sentence-transformers into `/clustering/chunk_embeddings.json`|
+| `/clustering/chunk_embeddings.json` | Chunk embeddings used for generating clusters |
+| `/clustering/cluster_chunks.ipynb` | Script to cluster `/clustering/chunk_embeddings.json` and save to `/clustering/chunk_clusters.json`|
+| `/clustering/chunk_clusters.json` | Chunks with assigned cluster labels |
+| `/clustering/add_progress_labels.ipynb` | Script to add `progress` field (0 to 1) based on chunk order in speech and save to `/clustering/chunk_clusters_labeled.json` |
+| `/clustering/chunk_clusters_labeled.json` | Final dataset with `embedding`, `cluster` and `progress` |
+| `/clustering/train_regressor.ipynb` | Trains regression model to predict `progress` from chunk embeddings |
 
 
 ---
@@ -46,13 +46,17 @@ You can find the generated collector curve graphs inside:
 ## Next Steps
 
 1. **Collect Real Conversations**  
-   - We need to gather more **natural dialogues** (eg: phone calls, interviews, podcasts)
-   - This will help us compare **collector curves of real vs planned speech**
+   - Collect transcripts of podcasts, debates, interviews, phone calls
+   - More diverse and natural speech patterns will improve model training
+   - Planned speeches can be used for regression while unplanned ones like stand up comedy or podcasts can be used for curve shape analysis
 
-2. **Clustering & Flattening Detection**  
-   - We'll analyze the collector curve shape to detect **flattening** (i.e, when fewer new concepts appear)
-   - The idea is: if the curve flattens, the conversation might be **nearing completion**
-   - Will experiment with **clustering similar patterns** across different conversations
-   - Clustering will help us track progress along with collector graph as it can work for **planned speeches too**
+2. **Better Embeddings & Curve Analysis**
+   - Need to experiment with advanced embeddings like BERT variants
+   - Deflect **flattening regions** of collector curve to identify conversation nearning completion
+
+3. **Work on third approach**
+   - Collect speeches and take out keywords
+   - Associate keywords with subtopics
+   - Make proper algorithm to calculate conversation percentage completed
 
 ---
