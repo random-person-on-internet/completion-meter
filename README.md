@@ -15,7 +15,7 @@ This project explores how we can **track the "completion" of a conversation or s
 You can find the generated collector curve graphs inside:
 ```
 
-📁 \curve\curve_analysis.ipynb
+📁 `/curve/curve_analysis.ipynb`
 
 ```
 
@@ -36,6 +36,8 @@ You can find the generated collector curve graphs inside:
 | `/clustering/chunk_embeddings.json` | Chunk embeddings for clustering |
 | `/clustering/cluster_chunks.ipynb` | Generate clusters for `/clustering/chunk_embeddings.json` and save them to `/clustering/chunk_clusters.json`|
 | `/clustering/chunk_clusters.json` | Clusters generated from embeddings for training model |
+| `/clustering/add_progress_labels.ipynb` | Script to add "progress" to clusters taken from `/clustering/chunk_clusters.json` and saves it to `/clustering/chunk_clusters_labeled.json` |
+| `/clustering/chunk_clusters_labeled.json` | Clusters with progress property added, ready to be used for unsupervised learning |
 
 
 ---
