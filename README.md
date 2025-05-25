@@ -38,6 +38,7 @@ You can find the generated collector curve graphs inside:
 | `/clustering/chunk_clusters.json` | Clusters generated from embeddings for training model |
 | `/clustering/add_progress_labels.ipynb` | Script to add "progress" to clusters taken from `/clustering/chunk_clusters.json` and saves it to `/clustering/chunk_clusters_labeled.json` |
 | `/clustering/chunk_clusters_labeled.json` | Clusters with progress property added, ready to be used for unsupervised learning |
+| `/clustering/train_regressor.ipynb` | Script to train regressor model for SUPERVISED learning |
 
 
 ---
