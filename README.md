@@ -34,6 +34,8 @@ You can find the generated collector curve graphs inside:
 | `/clustering/generate_chunk.ipynb` | Script to generate chunks from text files in `/data` and save json files in `/chunked_data` |
 | `/clustering/embed_chunks.ipynb` | Script to embed chunks from `/chunked_data` and save it to `/clustering/chunk_embeddings.json`|
 | `/clustering/chunk_embeddings.json` | Chunk embeddings for clustering |
+| `/clustering/cluster_chunks.ipynb` | Generate clusters for `/clustering/chunk_embeddings.json` and save them to `/clustering/chunk_clusters.json`|
+| `/clustering/chunk_clusters.json` | Clusters generated from embeddings for training model |
 
 
 ---
