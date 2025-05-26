@@ -153,3 +153,6 @@ ipython_config.py
 
 # Remove models
 **/*.pkl
+
+# Remove csv
+**/*.csv
