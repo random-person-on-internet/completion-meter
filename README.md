@@ -25,9 +25,13 @@ NOTE: This baseline model is just a starting point, accuracy is limited due to r
 
 | File/Folder | Purpose |
 |-------------|---------|
-| `/data` | Data in `.txt` format |
+| `/data` | GPT generated data in `.txt` format |
+| `/data_tedex_speeches/ted_talks.json` | Ted speeches in `.json` format |
+| `/data_tedex_speeches/csv_to_json.ipynb` | Script to convert `.csv` from kaggle into `.json` |
 | `/spacy/script.py` | Script to separate noun_phrases from `/data` and add it to `/extracted_data.json`|
+| `/spacy/script_tedex.py` | Script to separate noun_phrases from tedEx data and add it to `/extracted_data_tedex.json` |
 | `/extracted_data_cleaned.json` | Cleaned file of extracted `entities` and `noun_phrases` per speech |
+| `/extracted_data_tedex.json` | Extracted `entities` and `noun_phrases` per tedEx data |
 | `/curve/curve_analysis.ipynb` | Script to generate collector graphs |
 | `/curve/graphs_collector_style` | Collector curve graphs for each speech |
 | `/clustering/generate_chunk.ipynb` | Script to chunk `/data` files and store in `/chunked_data` |
