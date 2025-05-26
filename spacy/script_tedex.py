@@ -1,0 +1,63 @@
+import spacy
+import json
+from pathlib import Path
+
+nlp = spacy.load("en_core_web_sm")
+
+
+def extract_info(text):
+    doc = nlp(text)
+    entities = list(
+        set(
+            [
+                ent.text
+                for ent in doc.ents
+                if ent.label_ not in ["DATE", "TIME", "PERCENT", "MONEY", "QUANTITY"]
+            ]
+        )
+    )
+    noun_phrases = list(set([chunk.text for chunk in doc.noun_chunks]))
+    return entities, noun_phrases
+
+
+def process_json(input_json_path):
+    print(f"📄 Loading from: {input_json_path.resolve()}")
+
+    with open(input_json_path, "r", encoding="utf-8") as f:
+        ted_data = json.load(f)
+
+    extracted = {}
+
+    for item in ted_data:
+        talk_id = item.get("talk_id", "unknown_id")
+        title = item.get("title", "Untitled").strip()
+        transcript = item.get("transcript", "").strip()
+
+        if not transcript or len(transcript.split()) < 50:
+            print(f"⏭️ Skipping talk ID {talk_id} (too short or empty)")
+            continue
+
+        print(f"🔍 Processing: {title[:40]}...")
+
+        entities, noun_phrases = extract_info(transcript)
+        print(f"📌 Found {len(entities)} entities and {len(noun_phrases)} noun phrases")
+
+        extracted[talk_id] = {
+            "title": title,
+            "entities": entities,
+            "noun_phrases": noun_phrases,
+        }
+
+    with open("./extracted_data_tedex.json", "w", encoding="utf-8") as f:
+        json.dump(extracted, f, indent=2, ensure_ascii=False)
+
+    print("✅ Extraction complete. Data saved to extracted_data.json")
+
+
+if __name__ == "__main__":
+    from pathlib import Path
+
+    project_root = Path(__file__).resolve().parents[1]
+
+    input_path = project_root / "data_tedex_speeches/ted_talks.json"
+    process_json(input_path)
