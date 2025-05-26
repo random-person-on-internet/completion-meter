@@ -1,7 +1,10 @@
 # This was just to find number of scripts in extracted_data_tedex.json, u can ignore it, its not necessary
+# You can run this script with python .\ignore\find_length_of_file.py to verify if needed, add to list in future
+# 26-05-2025 : Total talks processed: 3995
 
 import json
 from pathlib import Path
+
 
 def count_objects(json_path):
     print(f"Loading: {json_path.resolve()}")
