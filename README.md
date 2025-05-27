@@ -31,9 +31,11 @@ NOTE: This baseline model is just a starting point, accuracy is limited due to r
 | `/spacy/script.py` | Script to separate noun_phrases from `/data` and add it to `/extracted_data.json`|
 | `/spacy/script_tedex.py` | Script to separate noun_phrases from tedEx data and add it to `/extracted_data_tedex.json` |
 | `/extracted_data_cleaned.json` | Cleaned file of extracted `entities` and `noun_phrases` per speech |
-| `/extracted_data_tedex.json` | Extracted `entities` and `noun_phrases` per tedEx data |
+| `/extracted_data_tedex_3.json` | Extracted `entities` and `noun_phrases` per tedEx data |
 | `/curve/curve_analysis.ipynb` | Script to generate collector graphs |
-| `/curve/graphs_collector_style` | Collector curve graphs for each speech |
+| `/curve/curve_analysis_tedex.ipynb` | Script to generate collector graphs for tedex data |
+| `/curve/graphs_collector_style` | Collector curve graphs for each speech => generate it for yourself using `/curve/curve_analysis.ipynb` |
+| `/curve/graph_collector_style_tedex` | Collector curve graphs for each tedex speech => generate it for yourself using `/curve/curve_analysis_tedex.ipynb` |
 | `/clustering/generate_chunk.ipynb` | Script to chunk `/data` files and store in `/chunked_data` |
 | `/chunked_data` | Speech chunks stored as JSON after splitting to generate vector embeddings |
 | `/clustering/embed_chunks.ipynb` | Script to embed `/chunked_data` using sentence-transformers into `/clustering/chunk_embeddings.json`|
