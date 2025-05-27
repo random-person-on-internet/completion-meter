@@ -159,3 +159,4 @@ ipython_config.py
 
 # Remove graphs
 **/graph_collector_style_tedex
+**/graphs_collector_style
