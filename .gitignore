@@ -156,3 +156,6 @@ ipython_config.py
 
 # Remove csv
 **/*.csv
+
+# Remove graphs
+**/graph_collector_style_tedex
