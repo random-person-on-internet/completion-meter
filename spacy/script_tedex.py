@@ -16,7 +16,19 @@ def extract_info(text):
             ]
         )
     )
-    noun_phrases = list(set([chunk.text for chunk in doc.noun_chunks]))
+    # noun_phrases = list(set([chunk.text for chunk in doc.noun_chunks]))
+    noun_phrases = []
+    for chunk in doc.noun_chunks:
+        filtered_tokens = [
+            token.lemma_.lower()
+            for token in chunk
+            if not token.pos_ in ["NOUN", "PROPN"]
+        ]
+        if filtered_tokens:
+            normalized = " ".join(filtered_tokens)
+            noun_phrases.append(normalized)
+    noun_phrases = list(set(noun_phrases))
+
     return entities, noun_phrases
 
 
@@ -48,7 +60,7 @@ def process_json(input_json_path):
             "noun_phrases": noun_phrases,
         }
 
-    with open("./extracted_data_tedex.json", "w", encoding="utf-8") as f:
+    with open("./extracted_data_tedex_2.json", "w", encoding="utf-8") as f:
         json.dump(extracted, f, indent=2, ensure_ascii=False)
 
     print("✅ Extraction complete. Data saved to extracted_data.json")
