@@ -164,3 +164,6 @@ ipython_config.py
 # Remove chunked data
 chunked_data/
 chunked_data_tedex/
+
+# Remove embeddings
+clustering/embeddings/
