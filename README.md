@@ -37,7 +37,9 @@ NOTE: This baseline model is just a starting point, accuracy is limited due to r
 | `/curve/graphs_collector_style` | Collector curve graphs for each speech => generate it for yourself using `/curve/curve_analysis.ipynb` |
 | `/curve/graph_collector_style_tedex` | Collector curve graphs for each tedex speech => generate it for yourself using `/curve/curve_analysis_tedex.ipynb` |
 | `/clustering/generate_chunk.ipynb` | Script to chunk `/data` files and store in `/chunked_data` |
-| `/chunked_data` | Speech chunks stored as JSON after splitting to generate vector embeddings |
+| `/clustering/generate_chunk_tedex.ipynb` | Script to chunk `/extracted_data_tedex_3.json` and store it in `/chunked_data_tedex` |
+| `/chunked_data` | Speech chunks stored as JSON after splitting to generate vector embeddings => generate it for yourself using `/clustering/cluster_chunks.ipynb` |
+| `/chunked_data_tedex` | Chunks for ted talks => generate it for yourself using => `/clustering/generate_chunk_tedex.ipynb` |
 | `/clustering/embed_chunks.ipynb` | Script to embed `/chunked_data` using sentence-transformers into `/clustering/chunk_embeddings.json`|
 | `/clustering/chunk_embeddings.json` | Chunk embeddings used for generating clusters |
 | `/clustering/cluster_chunks.ipynb` | Script to cluster `/clustering/chunk_embeddings.json` and save to `/clustering/chunk_clusters.json`|
