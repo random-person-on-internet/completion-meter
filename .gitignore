@@ -167,3 +167,6 @@ chunked_data_tedex/
 
 # Remove embeddings
 clustering/embeddings/
+
+# Remove clusters
+clustering/clusters/
