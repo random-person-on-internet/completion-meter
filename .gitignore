@@ -170,3 +170,6 @@ clustering/embeddings/
 
 # Remove clusters
 clustering/clusters/
+
+# Remove labelled clusters
+clustering/labelled/
