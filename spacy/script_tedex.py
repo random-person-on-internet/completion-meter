@@ -74,10 +74,12 @@ def process_json(input_json_path):
             "noun_phrases": noun_phrases,
         }
 
-    with open("./extracted_data_tedex_3.json", "w", encoding="utf-8") as f:
+    with open(
+        "/curve/extracted_data/extracted_data_tedex_3.json", "w", encoding="utf-8"
+    ) as f:
         json.dump(extracted, f, indent=2, ensure_ascii=False)
 
-    print("✅ Extraction complete. Data saved to extracted_data.json")
+    print("✅ Extraction complete. Data saved to extracted_data_tedex.json")
 
 
 if __name__ == "__main__":
@@ -85,5 +87,5 @@ if __name__ == "__main__":
 
     project_root = Path(__file__).resolve().parents[1]
 
-    input_path = project_root / "data_tedex_speeches/ted_talks.json"
+    input_path = project_root / "/data/data_tedex_speeches/ted_talks.json"
     process_json(input_path)

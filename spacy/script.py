@@ -36,7 +36,7 @@ def process_folder(folder_path):
         print(f"📌 Found {len(entities)} entities and {len(noun_phrases)} noun phrases")
         all_data[file.name] = {"entities": entities, "noun_phrases": noun_phrases}
 
-    with open("extracted_data.json", "w", encoding="utf-8") as f:
+    with open("/curve/extracted_data/extracted_data.json", "w", encoding="utf-8") as f:
         json.dump(all_data, f, indent=2, ensure_ascii=False)
     print("✅ Extraction complete. Data saved to extracted_data.json")
 
@@ -45,6 +45,6 @@ if __name__ == "__main__":
     from pathlib import Path
 
     project_root = Path(__file__).resolve().parents[1]
-    data_path = project_root / "data"
+    data_path = project_root / "data/data_AI_generated"
 
     process_folder(data_path)

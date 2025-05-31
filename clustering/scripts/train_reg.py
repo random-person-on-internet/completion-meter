@@ -13,7 +13,7 @@ import time
 import os
 import sys
 
-with open("./labelled/chunk_clusters_labeled_tedex.json", "r", encoding="utf-8") as f:
+with open("../labelled/chunk_clusters_labeled_tedex.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 print("Data loaded, preparing for embeddings and labels...")
@@ -93,5 +93,5 @@ print(f"Median Absolute Error: {medae}")
 print(f"Explained Variance Score: {evs}")
 
 print("Saving model...")
-joblib.dump(reg, "./models/speech_progress_regressor_tedex.pkl")
+joblib.dump(reg, "../models/speech_progress_regressor_tedex.pkl")
 print("Model saved to ./models/speech_progress_regressor_tedex.pkl")
