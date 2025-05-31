@@ -176,3 +176,6 @@ clustering/labelled/
 
 # Remove data
 data/
+
+# Remove extracted data
+**/extracted_data/
