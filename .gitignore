@@ -173,3 +173,6 @@ clustering/clusters/
 
 # Remove labelled clusters
 clustering/labelled/
+
+# Remove data
+data/
